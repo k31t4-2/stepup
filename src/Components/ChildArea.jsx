@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-const ChildArea = (props) => {
+const ChildArea = memo((props) => {
   const { open } = props;
 
   console.log("レンダリングがまもなく開始します。");
 
   const data = [...Array(2000).keys()];
+  console.log(data);
   console.log("レンダリング終わりました");
 
   return (
@@ -17,6 +18,6 @@ const ChildArea = (props) => {
 
     </>
   )
-}
+})
 
 export default ChildArea

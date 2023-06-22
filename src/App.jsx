@@ -4,9 +4,12 @@ import ChildArea from './Components/ChildArea';
 
 
 function App() {
+  // 以下のコンポーネントを更新したらAppコンポーネントのみ再レンダリングが起きる
   const [text, setText] = useState("")
-  const [open, setOpen] = useState(false)
+  console.log({text});
 
+  // 以下のstateを更新したらchildAreaコンポーネントが発動
+  const [open, setOpen] = useState(false)
 
   const changeText = (e) => setText(e.target.value)
 
