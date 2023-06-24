@@ -1,31 +1,27 @@
-import { useState } from 'react';
+import React from "react";
+import { BrowserRouter, Link } from "react-router-dom";
 import './App.css';
-import ChildArea from './Components/ChildArea';
+import { Router } from "./Components/Router/Router";
+
 
 
 function App() {
-  const [text, setText] = useState("")
-  const [open, setOpen] = useState(false)
-
-
-  const changeText = (e) => setText(e.target.value)
-
-  const clickToggle = () => {
-    // falseのopenが!なので、trueになり表示される
-    setOpen(!open)
-  }
 
   return (
-    <div className="App">
-      <input
-        value={text}
-        onChange={changeText}
-      />
-      <br />
-      <br />
-      <button onClick={clickToggle}>表示 / 非表示</button>
-      <ChildArea open={open}/>
-    </div>
+    // BrowserRouterでかこわないと、router-domの処理ができない
+    <BrowserRouter>
+      <div className="App">
+        {/* Linkは、画面遷移の設定 */}
+        <Link to="/">Home</Link>
+        <br />
+        <Link to="/About">About</Link>
+        <br />
+        <Link to="/Recruit">Recruit</Link>
+      </div>
+
+      {/* Routerを別のファイルで定義する */}
+      <Router/>
+    </BrowserRouter>
   );
 }
 
