@@ -1,46 +1,60 @@
 import React from 'react'
 import { Switch, Route } from "react-router-dom"
-import { About } from '../About'
-import { AboutDetailA } from '../AboutDetailA'
-import { AboutDetailB } from '../AboutDetailB'
 import { Home } from '../Home'
-import { Recruit } from '../Recruit'
-
+import { RoutesAbout } from './RoutesAbout'
+import { RoutesRecruit } from './RoutesRecruit'
 
 
 export const Router = () => {
   return (
     <>
-        {/* コンポーネントごとにどのページにレンダリングするか設定 */}
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+      {/* コンポーネントごとにどのページにレンダリングするか設定 */}
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
 
 
-          <Route
-            path="/About"
-            render={({ match: {url} }) => (
-              <Switch>
-                <Route exact path={url}>
-                  <About />
+        <Route
+          path="/About"
+          render={({ match }) => (
+
+          <Switch>
+            {RoutesAbout.map((route) => (
+              <Route
+                key={route.path}
+                path={`${match.url}${route.path}`}
+                exact={route.exact}
+              >
+                {route.children}
+              </Route>
+            ))}
+          </Switch>
+
+          )}
+        />
+
+        <Route
+          path="/Recruit"
+          render={({ match }) => (
+            <Switch>
+              {RoutesRecruit.map((route) => (
+                <Route
+                  key={route.path}
+                  path={`${match.url}${route.path}`}
+                  exact={route.exact}
+                >
+                  {route.children}
                 </Route>
+              ))}
+            </Switch>
+          )}
+        />
 
-                <Route path={`${url}/AboutDetailA`}>
-                  <AboutDetailA />
-                </Route>
 
-                <Route path={`${url}/AboutDetailB`}>
-                  <AboutDetailB />
-                </Route>
-              </Switch>
-            )}
-          />
 
-          <Route path="/Recruit">
-            <Recruit />
-          </Route>
-        </Switch>
-          </>
+
+      </Switch>
+    </>
   )
 }
