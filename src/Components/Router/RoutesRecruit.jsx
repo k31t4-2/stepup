@@ -2,6 +2,7 @@
 
 import { Recruit } from "../Recruit";
 import { RecruitDetail } from "../RecruitDetail";
+import { UrlParameter } from "../UrlParameter";
 
 
 export const RoutesRecruit = [
@@ -14,5 +15,10 @@ export const RoutesRecruit = [
     path : "/RecruitDetail",
     exact: false,
     children:<RecruitDetail />
+  },
+  {
+    path : "/:id",
+    exact: false,
+    children:<UrlParameter/>
   },
 ]
