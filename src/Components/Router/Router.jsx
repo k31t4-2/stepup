@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom"
 import { Home } from '../Home'
 import { RoutesAbout } from './RoutesAbout'
 import { RoutesRecruit } from './RoutesRecruit'
+import { Page404 } from '../Page404'
 
 
 export const Router = () => {
@@ -53,7 +54,9 @@ export const Router = () => {
 
 
 
-
+        <Route path="*">
+          <Page404/>
+        </Route>
       </Switch>
     </>
   )
