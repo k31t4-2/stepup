@@ -1,10 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from "styled-components";
 
 import { SearchInput } from '../Molecules/SearchInput';
 import { UserCard } from '../Organisms/User/UserCard';
 import { SecondaryButton } from '../Atoms/Button/SecondaryButton';
-import { UserContext } from '../../Providers/UserProvider';
+// import { UserContext } from '../../Providers/UserProvider';
+// Recoilのstateを参照
+import { useRecoilState } from "recoil";
+import { userState } from '../../Store/userState';
 
 const users = [...Array(10).keys()].map((val) => {
   return {
@@ -20,7 +23,8 @@ const users = [...Array(10).keys()].map((val) => {
 
 export const Users = () => {
 
-  const {userInfo,setUserInfo} = useContext(UserContext)
+  // const {userInfo,setUserInfo} = useContext(UserContext)
+  const [userInfo,setUserInfo] = useRecoilState(userState)
 
   const onClickSwitch = () => setUserInfo({ isAdmin : !userInfo.isAdmin})
 

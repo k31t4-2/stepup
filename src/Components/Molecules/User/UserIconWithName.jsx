@@ -1,6 +1,10 @@
-import React, { memo, useContext } from 'react'
+import React, { memo } from 'react'
 import styled from "styled-components";
-import { UserContext } from '../../../Providers/UserProvider';
+// import { UserContext } from '../../../Providers/UserProvider';
+
+//値を参照することしかしないことをvalueで明示している
+import { useRecoilValue } from "recoil";
+import { userState } from '../../../Store/userState';
 
 export const UserIconWithName = memo((props) => {
 
@@ -10,7 +14,8 @@ export const UserIconWithName = memo((props) => {
   const { image, name } = props
 
   // 以下を設定するだけでglobalなstateを参照（取ってこれる）できる
-  const {userInfo} = useContext(UserContext);
+  // const {userInfo} = useContext(UserContext);
+  const userInfo = useRecoilValue(userState)
   const isAdmin = userInfo ? userInfo.isAdmin : false
 
   return (
