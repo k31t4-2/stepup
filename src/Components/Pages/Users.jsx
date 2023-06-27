@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from "styled-components";
+
 import { SearchInput } from '../Molecules/SearchInput';
 import { UserCard } from '../Organisms/User/UserCard';
+import { SecondaryButton } from '../Atoms/Button/SecondaryButton';
+import { UserContext } from '../../Providers/UserProvider';
 
 const users = [...Array(10).keys()].map((val) => {
   return {
@@ -13,13 +16,19 @@ const users = [...Array(10).keys()].map((val) => {
     booking:"不要",
     website:"sample@.com",
    }
- })
+})
 
 export const Users = () => {
+
+  const {userInfo,setUserInfo} = useContext(UserContext)
+
+  const onClickSwitch = () => setUserInfo({ isAdmin : !userInfo.isAdmin})
+
   return (
     <SContainer>
       <h2>ユーザー一覧</h2>
       <SearchInput />
+      <SecondaryButton onClick={onClickSwitch}>trueとfalseを切り替える</SecondaryButton>
       <SUserArea>
       {users.map((user) => (
         <UserCard keys={user.id} user={user}/>
